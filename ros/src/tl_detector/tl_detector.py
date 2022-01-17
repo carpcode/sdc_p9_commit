@@ -78,6 +78,7 @@ class TLDetector(object):
         self.has_image = True
         self.camera_image = msg
         light_wp, state = self.process_traffic_lights()
+        rospy.logwarn("Closest light wp {0} \n And light state: {1}".format(light_wp, state))
 
         '''
         Publish upcoming red lights at camera frequency.
@@ -160,7 +161,7 @@ class TLDetector(object):
                 # Find closest stop line waypoint index
                 d = temp_wp_idx - car_wp_idx
                 if d >= 0 and d < diff:
-                    diff = d
+                    diff = d # get the smallest diff
                     closest_light = light
                     line_wp_idx = temp_wp_idx
 
