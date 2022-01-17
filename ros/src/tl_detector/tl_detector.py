@@ -165,6 +165,7 @@ class TLDetector(object):
 
         if closest_light:
             state = self.get_light_state(closest_light)
+            rospy.logwarn("TL-Detector-line_wp_idx={}".format(line_wp_idx))
             return line_wp_idx, state
 
         self.waypoints = None
