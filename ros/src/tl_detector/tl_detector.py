@@ -149,6 +149,7 @@ class TLDetector(object):
         stop_line_positions = self.config['stop_line_positions']
         if(self.pose):
             car_wp_idx = self.get_closest_waypoint(self.pose.pose.position.x, self.pose.pose.position.y)
+            rospy.logwarn("TL-Detector-received-car-wp-idx={}".format(car_wp_idx))
 
             #TODO find the closest visible traffic light (if one exists)
             diff = len(self.waypoints.waypoints)
@@ -168,7 +169,7 @@ class TLDetector(object):
             rospy.logwarn("TL-Detector-line_wp_idx={}".format(line_wp_idx))
             return line_wp_idx, state
 
-        self.waypoints = None
+        #self.waypoints = None
         return -1, TrafficLight.UNKNOWN
 
 if __name__ == '__main__':
